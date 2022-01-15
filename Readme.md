@@ -27,5 +27,7 @@ const debouncing = (fn, delay) => {
   };
 };
 
-debouncing(fn, 300);
+debouncing(() => {
+  console.log("do somethiung");
+}, 300);
 ```
