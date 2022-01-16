@@ -6,9 +6,26 @@
 
 </div>
 
-##### 1. What is `bind` method?
+##### 1. What is `Execution Context` in javascript?
 
-##### 2. What is `debouncing`?
+##### <b> Everything in Javascript happens inside the Execution context.</b >
+
+Whenever we run a javascript programme a global Execution context will be created. Execution context consist two part `Memory allocation` and `Code execution`. In Memory allocation part all the variable and function get a memory allocated.
+
+<p>Suppose Let's take example of below code:</p>
+
+```javascript
+var firstName = "Balram";
+var lastName = "Rathore";
+getFullName(fName,lName){
+return fName + " " + lName;
+}
+var fullName = getFullName(firstName,lastName);
+```
+
+##### 2. What is `bind` method?
+
+##### 3. What is `debouncing`?
 
 <p>Debouncing is a programming practice used to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the web page. In other words, it limits the rate at which a function gets invoked.</p>
 
