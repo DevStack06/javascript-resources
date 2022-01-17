@@ -25,7 +25,78 @@ return fName + " " + lName;
 var fullName = getFullName(firstName,lastName);
 ```
 
-##### 2. How `this` keyword work in javascript?
+##### 2. What is `call` method?
+
+With the `call()` method, we can write a method that can be used on different objects. See the below example -
+
+> const fullNameMsg = logFullName.call(this, args1, args2,args3);
+>
+> function logFullName(this, args1,args2,args3){}
+
+- Example 1 without arguments
+
+```javascript
+function logFullName() {
+  console.log(`My name is ${this.fName} ${this.lName}`);
+}
+
+const fullName = {
+  fName: "Dev",
+  lName: "Stack",
+};
+
+// const fullNameMsg = logFullName.call(this, args1, args2); (here this is the fullName)
+const fullNameMsg = logFullName.call(fullName);
+// It will console log My name is Dev Stack
+```
+
+- Example 2 with extra arguments
+
+```javascript
+const person = {
+  fullName: function (location) {
+    console.log(`My name is ${this.fName} ${this.lName} from ${location}`);
+  },
+};
+const person1 = {
+  fName: "Dev",
+  lName: "Stack",
+};
+
+person.fullName.call(person1, "India");
+// This will return "Dev Stack from India":
+```
+
+##### 3. What is `apply` method?
+
+`apply` method have same uses like `call`, the difference b/w `call` and `apply` is the way we pass arguments.
+
+> const fullNameMsg = logFullName.apply(this, args1, args2,args3);
+>
+> function logFullName(this, [args1,args2,args3]){}
+
+- Ex with arguments
+
+```javascript
+const person = {
+  fullName: function (city, country) {
+    console.log(
+      `My name is ${this.fName} ${this.lName} from ${city} ,${country}`
+    );
+  },
+};
+const person1 = {
+  fName: "Dev",
+  lName: "Stack",
+};
+
+person.fullName.apply(person1, ["XYZ", "India"]);
+// It will log `My name is Dev Stack from XYZ ,India`
+```
+
+##### 4. What is `bind` method?
+
+##### 5. How `this` keyword work in javascript?
 
 In JavaScript, the `this` keyword allows us to:
 
@@ -40,7 +111,7 @@ Different way to use the `this` keyword -
 const introduction = {
   fName: "Balram",
   lName: "Rathore",
-  logFullName: () => {
+  logFullName: function () {
     console.log(`My full name is ${this.fName} ${this.lName}.`);
   },
 };
@@ -49,11 +120,11 @@ introduction.logFullName();
 // It will log My full name is Balram Rathore.
 ```
 
-Here `this` is bound with the introduction object. if we take a complex object then here is the object.
+Here `this` is bound with the introduction object. Similarly if we take a complex example with below code.
 
 ```javascript
 const addLogFullName = (object) => {
-  object.logFullName = () => {
+  object.logFullName = function () {
     console.log(`My full name is ${this.fName} ${this.lName}.`);
   };
 };
@@ -73,7 +144,7 @@ intro2.logFullName();
 // It will log `My full name is Dev Stack`.
 ```
 
-##### 3. What is `bind` method?
+2. Let's understand explicit binding of `this` keyword with help of code
 
 ##### 4. What is `debouncing`?
 
