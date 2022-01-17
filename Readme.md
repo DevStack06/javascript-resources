@@ -4,7 +4,7 @@
 
 ## Here I am trying to create the notes related to javascript concepts. Feel free to add more concepts.
 
-#### All the points are taken from the online resources ( Ex - GeeksForGeek, FreeCodeCamp)
+#### All the points are taken from the online resources ( Ex - GeeksForGeek, FreeCodeCamp, W3School, StackOverflow)
 
 </div>
 
@@ -96,7 +96,32 @@ person.fullName.apply(person1, ["XYZ", "India"]);
 
 ##### 4. What is `bind` method?
 
-##### 5. How `this` keyword work in javascript?
+`Bind` creates a new function that will force the `this` inside the function to be the parameter passed to bind().
+
+Here's an example that shows how to use `bind` to pass a member method around that has the correct `this`:
+
+```javascript
+var myButton = {
+  content: "OK",
+  click() {
+    console.log(this.content + " clicked");
+  },
+};
+
+myButton.click();
+// log `OK clicked`
+var looseClick = myButton.click;
+looseClick(); // not bound, 'this' is not myButton - it is the globalThis
+// log `undefined clicked`
+
+var boundClick = myButton.click.bind(myButton);
+boundClick(); // bound, 'this' is myButton
+// log `Ok clicked`
+```
+
+##### 5. What is `Currying`?
+
+##### 6. How `this` keyword work in javascript?
 
 In JavaScript, the `this` keyword allows us to:
 
@@ -146,7 +171,7 @@ intro2.logFullName();
 
 2. Let's understand explicit binding of `this` keyword with help of code
 
-##### 4. What is `debouncing`?
+##### 7. What is `debouncing`?
 
 <p>Debouncing is a programming practice used to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the web page. In other words, it limits the rate at which a function gets invoked.</p>
 
@@ -169,3 +194,7 @@ debouncing(() => {
   console.log("do somethiung");
 }, 300);
 ```
+
+##### 8. What is `Generator`?
+
+##### 9. What is `Throttling`?
